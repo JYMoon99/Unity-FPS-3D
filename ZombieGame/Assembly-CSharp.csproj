@@ -56,11 +56,12 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Script\Player.cs" />
-    <Compile Include="Assets\Script\RotateCamera.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Assets\OccaSoftware\Crosshairs\Readme.txt" />
+    <Compile Include="Assets\Script\Player\RotateCamera.cs" />
+    <Compile Include="Assets\Script\Player\Player.cs" />
+    <Compile Include="Assets\Script\Zombie\Zombie.cs" />
+    <Compile Include="Assets\Script\Create\FactoryUse.cs" />
+    <Compile Include="Assets\Script\Create\Factory.cs" />
+    <Compile Include="Assets\Script\Zombie\WarZombie.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -752,10 +753,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="OccaSoftware.Crosshairs.Editor.csproj">
-      <Project>{47CBF5D9-EB26-4EA9-C4AB-D9AF22CA4873}</Project>
-      <Name>OccaSoftware.Crosshairs.Editor</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
