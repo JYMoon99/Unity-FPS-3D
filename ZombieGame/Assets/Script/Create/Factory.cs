@@ -5,7 +5,9 @@ using UnityEngine;
 
 public enum UnitType
 {
-    WarZombie
+    WARZOMBIE,
+    PARASITEZOMBIE,
+    ZOMBIEGIRL
 }
 
 public class Factory : MonoBehaviour
@@ -18,13 +20,27 @@ public class Factory : MonoBehaviour
 
         switch (type) 
         {
-            case UnitType.WarZombie : unit = Instantiate
+            case UnitType.WARZOMBIE : unit = Instantiate
                     (
-                        Resources.Load<GameObject>("Warzombie F Pedroso"),
+                        Resources.Load<GameObject>("Warzombie"),
                         createPoint[Random.Range(0, 3)]
                     );
                 break;
-        
+            case UnitType.PARASITEZOMBIE : unit = Instantiate
+                    (
+                        Resources.Load<GameObject>("ParasiteZombie"),
+                        createPoint[Random.Range(0, 3)]
+                    );
+                break;
+            case UnitType.ZOMBIEGIRL : unit = Instantiate
+                    (
+                        Resources.Load<GameObject>("Zombiegirl"),
+                        createPoint[Random.Range(0, 3)]
+                    );
+                break;
+
+
+
         }
 
         return unit;

@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public abstract class Zombie : MonoBehaviour
+public abstract class Zombie : Entity
 {
-    protected float hp;
     protected float attack;
 
     protected Animator animator;
@@ -20,6 +19,13 @@ public abstract class Zombie : MonoBehaviour
         playerTransform = GameObject.Find("Player").GetComponent<Transform>();
         // Player를 찾은 다음 그의 Transform 컴포넌트를 가져온다.
     }
+
+    public void Damage()
+    {
+        TakeHit(attack, gameObject);
+        Debug.Log(attack);
+    }
+
 
     protected abstract void Movement();
 

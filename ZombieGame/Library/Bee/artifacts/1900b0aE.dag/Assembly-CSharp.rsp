@@ -347,10 +347,15 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
 "Assets/Script/Create/Factory.cs"
 "Assets/Script/Create/FactoryUse.cs"
+"Assets/Script/Health System/Entity.cs"
+"Assets/Script/Health System/InterfaceManager.cs"
 "Assets/Script/Player/Player.cs"
+"Assets/Script/Player/Rifle.cs"
 "Assets/Script/Player/RotateCamera.cs"
+"Assets/Script/Zombie/ParasiteZombie.cs"
 "Assets/Script/Zombie/WarZombie.cs"
 "Assets/Script/Zombie/Zombie.cs"
+"Assets/Script/Zombie/Zombiegirl.cs"
 -langversion:9.0
 
 /deterministic

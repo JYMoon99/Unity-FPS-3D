@@ -56,7 +56,12 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Script\Zombie\Zombiegirl.cs" />
     <Compile Include="Assets\Script\Player\RotateCamera.cs" />
+    <Compile Include="Assets\Script\Health System\Entity.cs" />
+    <Compile Include="Assets\Script\Zombie\ParasiteZombie.cs" />
+    <Compile Include="Assets\Script\Health System\InterfaceManager.cs" />
+    <Compile Include="Assets\Script\Player\Rifle.cs" />
     <Compile Include="Assets\Script\Player\Player.cs" />
     <Compile Include="Assets\Script\Zombie\Zombie.cs" />
     <Compile Include="Assets\Script\Create\FactoryUse.cs" />

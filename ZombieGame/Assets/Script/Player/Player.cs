@@ -2,17 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : Entity
 {
     [SerializeField] float speed = 5.0f;
     [SerializeField] float gravity = 100f;
 
+    private Rifle rifle;
     private float mouseX;
     private Vector3 direction;
+    private Animator animator;
     private CharacterController characterController;
 
     private void Awake()
     {
+        health = 100;
+        rifle = new Rifle();
+        animator = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();
     }
 
@@ -27,6 +32,17 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+
+        if (Input.GetButtonDown("Fire1") && rifle.magazine > 0)
+        {
+            rifle.Launch();
+
+            if(rifle.magazine <= 0)
+            {
+                StartCoroutine(rifle.Reload(animator));
+            }
+        }
+
         Movement(); // 캐릭터 이동 관련 함수
         Rotate(); // 마우스 회전 함수
     }
@@ -63,6 +79,8 @@ public class Player : MonoBehaviour
     }
 
     #endregion
+
+
 
 }
 

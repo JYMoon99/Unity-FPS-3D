@@ -7,14 +7,23 @@ public class FactoryUse : MonoBehaviour
 {
     [SerializeField] Factory factory;
 
-    GameObject unit1 = null;
+    WaitForSeconds wait = new WaitForSeconds(10);
 
     void Start()
     {
-
-        unit1 = factory.CreateUnit(UnitType.WarZombie);
-        
+        StartCoroutine(CreateZombie());
     }
 
+
+    private IEnumerator CreateZombie()
+    {
+        while (true)
+        {
+            factory.CreateUnit((UnitType)Random.Range(0, 3));
+
+            yield return wait;
+        }
+
+    }
 
 }

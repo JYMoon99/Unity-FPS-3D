@@ -14,7 +14,7 @@ public class WarZombie : Zombie
     {
         base.Start(); // base : 부모 클래스
 
-        hp = 100;
+        health = 100;
         attack = 5;
       
     }
