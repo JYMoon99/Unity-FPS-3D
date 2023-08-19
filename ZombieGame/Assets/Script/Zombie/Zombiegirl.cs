@@ -5,10 +5,6 @@ using UnityEngine.AI;
 
 public class Zombiegirl : Zombie
 {
-    protected override void Movement()
-    {
-        navMeshAgent.SetDestination(playerTransform.position);
-    }
 
     new void Start()
     {
@@ -19,10 +15,22 @@ public class Zombiegirl : Zombie
 
     }
 
-    private void Update()
+    protected override void Update()
     {
-        Movement();
+        base.Update();
+
     }
+
+    protected override void OnTriggerEnter(Collider other)
+    {
+        base.OnTriggerEnter(other);
+    }
+
+    protected override void OnTriggerExit(Collider other)
+    {
+        base.OnTriggerExit(other);
+    }
+
 
 
 }

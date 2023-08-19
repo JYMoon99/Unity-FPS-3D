@@ -58,9 +58,13 @@
   <ItemGroup>
     <Compile Include="Assets\Script\Zombie\Zombiegirl.cs" />
     <Compile Include="Assets\Script\Player\RotateCamera.cs" />
+    <Compile Include="Assets\Script\State\Run.cs" />
     <Compile Include="Assets\Script\Health System\Entity.cs" />
+    <Compile Include="Assets\Script\Manager\SoundManager.cs" />
     <Compile Include="Assets\Script\Zombie\ParasiteZombie.cs" />
-    <Compile Include="Assets\Script\Health System\InterfaceManager.cs" />
+    <Compile Include="Assets\Script\State\Attack.cs" />
+    <Compile Include="Assets\Script\Manager\InterfaceManager.cs" />
+    <Compile Include="Assets\Script\State\Die.cs" />
     <Compile Include="Assets\Script\Player\Rifle.cs" />
     <Compile Include="Assets\Script\Player\Player.cs" />
     <Compile Include="Assets\Script\Zombie\Zombie.cs" />

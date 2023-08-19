@@ -9,11 +9,5 @@ public class Entity : MonoBehaviour, IDamageable
     public void TakeHit(float damage, GameObject clone)
     {
         clone.GetComponent<Entity>().health -= damage;
-
-        if(health <= 0)
-        {
-            Destroy(gameObject);
-        }
-
     }
 }

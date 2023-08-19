@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Player : Entity
 {
-    [SerializeField] float speed = 5.0f;
+    [SerializeField] float speed = 8.0f;
     [SerializeField] float gravity = 100f;
 
     private Rifle rifle;
@@ -16,7 +17,7 @@ public class Player : Entity
     private void Awake()
     {
         health = 100;
-        rifle = new Rifle();
+        rifle = GetComponent<Rifle>();
         animator = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();
     }
@@ -37,7 +38,7 @@ public class Player : Entity
         {
             rifle.Launch();
 
-            if(rifle.magazine <= 0)
+            if(rifle.magazine <= 0 || Input.GetKey(KeyCode.R))
             {
                 StartCoroutine(rifle.Reload(animator));
             }
@@ -66,6 +67,8 @@ public class Player : Entity
         direction.y -= Time.deltaTime * gravity;
 
         characterController.Move(transform.TransformDirection(direction) * speed * Time.deltaTime);
+  
+
     }
 
     #endregion

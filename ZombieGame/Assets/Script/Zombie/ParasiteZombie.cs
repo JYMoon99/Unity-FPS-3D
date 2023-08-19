@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class ParasiteZombie : Zombie
 {
-    protected override void Movement()
-    {
-        navMeshAgent.SetDestination(playerTransform.position);
-    }
-
     new void Start()
     {
         base.Start(); // base : 부모 클래스
@@ -18,13 +13,20 @@ public class ParasiteZombie : Zombie
 
     }
 
-    private void Update()
+    protected override void Update()
     {
-        Movement();
+        base.Update();
     }
 
+    protected override void OnTriggerEnter(Collider other)
+    {
+        base.OnTriggerEnter(other);
+    }
 
-
+    protected override void OnTriggerExit(Collider other)
+    {
+        base.OnTriggerExit(other);
+    }
 
 }
 
