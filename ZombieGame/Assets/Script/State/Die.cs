@@ -5,8 +5,6 @@ using UnityEngine.AI;
 
 public class Die : MonoBehaviour, IState
 {
-
-
     public void Action(Animator animator, NavMeshAgent navMeshAgent)
     {
 

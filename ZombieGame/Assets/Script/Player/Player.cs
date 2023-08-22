@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//using UnityEngine.AI;
 
 
 public class Player : Entity
 {
     [SerializeField] float speed = 8.0f;
     [SerializeField] float gravity = 100f;
+    [SerializeField] ParticleSystem particle;
+
 
     private Rifle rifle;
     private float mouseX;
@@ -36,13 +39,17 @@ public class Player : Entity
 
         if (Input.GetButtonDown("Fire1") && rifle.magazine > 0)
         {
+            particle.Play();
             rifle.Launch();
 
-            if(rifle.magazine <= 0 || Input.GetKey(KeyCode.R))
+            if (rifle.magazine <= 0)
             {
                 StartCoroutine(rifle.Reload(animator));
             }
         }
+
+
+
 
         Movement(); // 캐릭터 이동 관련 함수
         Rotate(); // 마우스 회전 함수

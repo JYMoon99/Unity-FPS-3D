@@ -30,14 +30,13 @@ public class Rifle : MonoBehaviour
 
                 if(clone != null) 
                 {
-                    hit.collider.GetComponent<Zombie>().Death();
                     clone.TakeHit(attack, hit.collider.gameObject);
+                    hit.collider.GetComponent<Zombie>().Death();
                 }
             }
 
             magazine--;
 
-          
     }
 
     public IEnumerator Reload(Animator animator)
