@@ -17,6 +17,7 @@ public class Die : MonoBehaviour, IState
             // 현재 애니메이션의 진행도가 1보다 크거나 같다면 Destroy
             if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
             {
+                navMeshAgent.speed = 0;
                 Destroy(animator.gameObject);
             }
         }

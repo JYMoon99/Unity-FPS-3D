@@ -1,19 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using UnityEngine.AI;
 
 
+[RequireComponent(typeof(Rifle))]
 public class Player : Entity
 {
     [SerializeField] float speed = 8.0f;
     [SerializeField] float gravity = 100f;
     [SerializeField] ParticleSystem particle;
+    [SerializeField] ParticleSystem fragments;
 
 
     private Rifle rifle;
     private float mouseX;
+
     private Vector3 direction;
+    private Vector3 cameraDirection;
+
     private Animator animator;
     private CharacterController characterController;
 
@@ -22,6 +26,8 @@ public class Player : Entity
         health = 100;
         rifle = GetComponent<Rifle>();
         animator = GetComponent<Animator>();
+
+        cameraDirection = Camera.main.transform.localPosition; // 메인 카메라를 찾는다
         characterController = GetComponent<CharacterController>();
     }
 
@@ -40,7 +46,7 @@ public class Player : Entity
         if (Input.GetButtonDown("Fire1") && rifle.magazine > 0)
         {
             particle.Play();
-            rifle.Launch();
+            rifle.Launch(fragments);
 
             if (rifle.magazine <= 0)
             {
@@ -91,6 +97,24 @@ public class Player : Entity
     #endregion
 
 
+    #region 캐릭터 데미지 효과
 
+    public IEnumerator Shake(float amount, float duration)
+    {
+        while(0 < duration) 
+        {
+            Camera.main.transform.localPosition = (Vector3)Random.insideUnitCircle * amount + cameraDirection;
+
+            duration -= Time.deltaTime;
+
+            yield return null;
+
+            
+        }
+
+        Camera.main.transform.localPosition = cameraDirection;
+    }
+
+    #endregion
 }
 

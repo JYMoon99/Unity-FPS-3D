@@ -11,6 +11,7 @@ public enum State
     DIE
 }
 
+
 public abstract class Zombie : Entity
 {
     private IState state;
@@ -71,6 +72,8 @@ public abstract class Zombie : Entity
     public void Damage()
     {
         TakeHit(attack, playerTransform.gameObject);
+        StartCoroutine(playerTransform.GetComponent<Player>().Shake(0.5f, 0.25f));
+
         SoundManager.instance.PlayerSound(Sound.Hit);
     }
 

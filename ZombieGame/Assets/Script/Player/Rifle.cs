@@ -16,7 +16,7 @@ public class Rifle : MonoBehaviour
 
 
 
-    public void Launch()
+    public void Launch(ParticleSystem effect)
     {
         SoundManager.instance.PlayerSound(Sound.Shot);
 
@@ -27,6 +27,10 @@ public class Rifle : MonoBehaviour
             if(Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
                 IDamageable clone = hit.collider.GetComponent<IDamageable>();
+
+                effect.transform.position = hit.point;
+                effect.transform.rotation = Quaternion.LookRotation(hit.normal);
+                effect.Play();
 
                 if(clone != null) 
                 {
