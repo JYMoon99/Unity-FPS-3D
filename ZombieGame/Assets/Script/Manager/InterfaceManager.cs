@@ -10,6 +10,6 @@ public interface IDamageable
 
 public interface IState
 {
-    void Action(Animator animator, NavMeshAgent navMeshAgent);
+    void Action(Zombie zombie);
 
 }

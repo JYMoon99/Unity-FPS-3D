@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -19,23 +20,22 @@ public abstract class Zombie : Entity
 
     protected float attack;
 
-    protected Animator animator;
-    protected Transform playerTransform;
-    protected NavMeshAgent navMeshAgent;
+    public Animator animator;
+    public Transform targetPosition;
+    public NavMeshAgent navMeshAgent;
 
     protected void Start() // 자식이 접근할 수 있도록 protected 사용
     {
         animator = GetComponent<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>();
-        playerTransform = GameObject.Find("Player").GetComponent<Transform>();
+        targetPosition = GameObject.Find("Player").GetComponent<Transform>();
         // Player를 찾은 다음 그의 Transform 컴포넌트를 가져온다.
 
-        
-        ChangeState(new Run());                                                                                                                                    ChangeState(new Run());
 
+        StateMachine(new Run()); 
     }
 
-    public void ChangeState(IState state)
+    public void StateMachine(IState state)
     {
         this.state = state;
     }
@@ -44,47 +44,40 @@ public abstract class Zombie : Entity
 
     protected virtual void Update()
     {
-        switch(stateMachine)
-        {
-            case State.RUN:
-                state.Action(animator, navMeshAgent);
-                break;
-            case State.DIE:
-                state.Action(animator, navMeshAgent);
-  
-                break;
-            case State.ATTACK:
-                state.Action(animator, navMeshAgent);
-                break;
-        }
+        state.Action(this);
+    }
 
+    public void Damage()
+    {
+        TakeHit(attack, targetPosition.gameObject);
+        StartCoroutine(targetPosition.GetComponent<Player>().Shake(0.5f, 0.25f));
+
+        SoundManager.instance.PlayerSound(Sound.Hit);
     }
 
     public void Death()
     {
         if (health <= 0)
         {
-            ChangeState(new Die());
+            StateMachine(new Die());
         }
-    }
-
-
-    public void Damage()
-    {
-        TakeHit(attack, playerTransform.gameObject);
-        StartCoroutine(playerTransform.GetComponent<Player>().Shake(0.5f, 0.25f));
-
-        SoundManager.instance.PlayerSound(Sound.Hit);
     }
 
     protected virtual void OnTriggerEnter(Collider other)
     {
-        ChangeState(new Attack());
+
+        if (health > 0)
+        {
+            StateMachine(new Attack());
+        }
     }
 
     protected virtual void OnTriggerExit(Collider other)
     {
-        ChangeState(new Run());
+        if (health > 0)
+        {
+            StateMachine(new Run());
+        }
     }
 
 }

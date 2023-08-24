@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Run : IState
+public class Run : MonoBehaviour, IState
 {
-    public void Action(Animator animator, NavMeshAgent navMeshAgent)
+    public void Action(Zombie zombie)
     {
-        animator.SetBool("Attack", false);
+        zombie.animator.SetBool("Attack", false);
 
-        navMeshAgent.speed = 1.5f;
+        zombie.navMeshAgent.speed = 1.5f;
 
         Transform playerTransform = GameObject.Find("Player").GetComponent<Transform>();
 
-        navMeshAgent.SetDestination(playerTransform.position);
+        zombie.navMeshAgent.SetDestination(playerTransform.position);
     }
 }
